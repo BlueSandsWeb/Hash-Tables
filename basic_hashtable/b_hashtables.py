@@ -28,34 +28,50 @@ def hash(string, max):
 # Fill this in.
 # If you are overwriting a value with a different key, print a warning.
 def hash_table_insert(hash_table, key, value):
-    pass
+    index = hash(key, hash_table.capacity)
+    if hash_table.storage[index] is not None:
+        print("Warning: overwriting a value")
+    hash_table.storage[index] = Pair(key, value)
 
 
 # Fill this in.
 # If you try to remove a value that isn't there, print a warning.
 def hash_table_remove(hash_table, key):
-    pass
+    index = hash(key, hash_table.capacity)
+    if hash_table.storage[index] is None:
+        print("No item at that location")
+        return None
+    elif hash_table.storage[index].value is None:
+        print("No item at that location")
+        return None
+    else:
+        hash_table.storage[index].value = None
 
 
 # Fill this in.
 # Should return None if the key is not found.
 def hash_table_retrieve(hash_table, key):
-    pass
+    
+    if hash_table.storage[hash(key, hash_table.capacity)] is not None:
+        return hash_table.storage[hash(key, hash_table.capacity)].value
+    else:
+        return None
 
 
 
 
-# def Testing():
-#     ht = BasicHashTable(16)
 
-#     hash_table_insert(ht, "line", "Here today...\n")
+def Testing():
+    ht = BasicHashTable(16)
 
-#     hash_table_remove(ht, "line")
+    hash_table_insert(ht, "line", "Here today...\n")
 
-#     if hash_table_retrieve(ht, "line") is None:
-#         print("...gone tomorrow (success!)")
-#     else:
-#         print("ERROR:  STILL HERE")
+    hash_table_remove(ht, "line")
+
+    if hash_table_retrieve(ht, "line") is None:
+        print("...gone tomorrow (success!)")
+    else:
+        print("ERROR:  STILL HERE")
 
 
-# Testing()
+Testing()
