@@ -41,6 +41,9 @@ def hash_table_remove(hash_table, key):
     if hash_table.storage[index] is None:
         print("No item at that location")
         return None
+    elif hash_table.storage[index].key != key:
+        print("Can't remove, wrong key")
+        return None
     else:
         hash_table.storage[index] = None
 
@@ -53,6 +56,9 @@ def hash_table_retrieve(hash_table, key):
     if hash_table.storage[index] is not None:
         if hash_table.storage[index].key == key:
             return hash_table.storage[index].value
+        else:
+            print('key no longer exists')
+    print('no value with key "' + key + '"')
     return None
 
 

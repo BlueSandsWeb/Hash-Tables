@@ -31,6 +31,8 @@ class TestBasicHashTable(unittest.TestCase):
         ht = BasicHashTable(8)
 
         hash_table_insert(ht, "key-1", "new-val-1")
+        hash_table_retrieve(ht, "key-1")
+
         hash_table_remove(ht, "key-1")
         return_value = hash_table_retrieve(ht, "key-1")
         self.assertTrue(return_value is None)
