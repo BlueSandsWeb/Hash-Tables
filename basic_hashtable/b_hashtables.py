@@ -22,14 +22,13 @@ def hash(string, max):
     hash = 5381
     for x in string:
         hash = ((hash << 5) + hash)+ ord(x)
-    hash = hash & 0xFFFFFFFF
     return hash % max
 
 
 # Fill this in.
 # If you are overwriting a value with a different key, print a warning.
 def hash_table_insert(hash_table, key, value):
-    index = hash(key, hash_table.capacity)
+    index = hash(key, hash_table.capacity)    
     if hash_table.storage[index] is not None:
         print("Warning: overwriting a value")
     hash_table.storage[index] = Pair(key, value)
@@ -49,11 +48,12 @@ def hash_table_remove(hash_table, key):
 # Fill this in.
 # Should return None if the key is not found.
 def hash_table_retrieve(hash_table, key):
-    
-    if hash_table.storage[hash(key, hash_table.capacity)] is not None:
-        return hash_table.storage[hash(key, hash_table.capacity)].value
-    else:
-        return None
+    index = hash(key, hash_table.capacity)
+
+    if hash_table.storage[index] is not None:
+        if hash_table.storage[index].key == key:
+            return hash_table.storage[index].value
+    return None
 
 
 
