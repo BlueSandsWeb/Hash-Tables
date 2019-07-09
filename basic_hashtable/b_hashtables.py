@@ -13,23 +13,16 @@ class BasicHashTable:
     def __init__(self, capacity):
         self.capacity = capacity
         self.storage = [None] * capacity
-        [[key = 0, value="string"],None,None,[key = 3, value="string"],None,None,[key = 5, value="string"]]
+        # [[key = 0, value="string"],None,None,[key = 3, value="string"],None,None,[key = 5, value="string"]]
 
 
-#!!!!!!!!!!from internet!!!!!!!!!!
-# function hash(str) {
-#   var len = str.length;
-#   var hash = 5381;
-#   for (var idx = 0; idx < len; ++idx) {
-    # hash = 33 * hash + str.charCodeAt(idx);
-#   }
-#   return hash;
-# }
 
-# Fill this in.
 # Research and implement the djb2 hash function
 def hash(string, max):
-    pass
+    hash = 5381
+    for x in string:
+        hash = ((hash << 5) + hash)+ ord(x)
+    return hash % max
 
 
 # Fill this in.
