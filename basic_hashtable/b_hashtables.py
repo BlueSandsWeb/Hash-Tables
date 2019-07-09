@@ -11,8 +11,20 @@ class Pair:
 # Fill this in.  All storage values should be initialized to None
 class BasicHashTable:
     def __init__(self, capacity):
-        pass
+        self.capacity = capacity
+        self.storage = [None] * capacity
+        [[key = 0, value="string"],None,None,[key = 3, value="string"],None,None,[key = 5, value="string"]]
 
+
+#!!!!!!!!!!from internet!!!!!!!!!!
+# function hash(str) {
+#   var len = str.length;
+#   var hash = 5381;
+#   for (var idx = 0; idx < len; ++idx) {
+    # hash = 33 * hash + str.charCodeAt(idx);
+#   }
+#   return hash;
+# }
 
 # Fill this in.
 # Research and implement the djb2 hash function
@@ -38,17 +50,19 @@ def hash_table_retrieve(hash_table, key):
     pass
 
 
-def Testing():
-    ht = BasicHashTable(16)
-
-    hash_table_insert(ht, "line", "Here today...\n")
-
-    hash_table_remove(ht, "line")
-
-    if hash_table_retrieve(ht, "line") is None:
-        print("...gone tomorrow (success!)")
-    else:
-        print("ERROR:  STILL HERE")
 
 
-Testing()
+# def Testing():
+#     ht = BasicHashTable(16)
+
+#     hash_table_insert(ht, "line", "Here today...\n")
+
+#     hash_table_remove(ht, "line")
+
+#     if hash_table_retrieve(ht, "line") is None:
+#         print("...gone tomorrow (success!)")
+#     else:
+#         print("ERROR:  STILL HERE")
+
+
+# Testing()
