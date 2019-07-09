@@ -22,6 +22,7 @@ def hash(string, max):
     hash = 5381
     for x in string:
         hash = ((hash << 5) + hash)+ ord(x)
+    hash = hash & 0xFFFFFFFF
     return hash % max
 
 
@@ -41,11 +42,8 @@ def hash_table_remove(hash_table, key):
     if hash_table.storage[index] is None:
         print("No item at that location")
         return None
-    elif hash_table.storage[index].value is None:
-        print("No item at that location")
-        return None
     else:
-        hash_table.storage[index].value = None
+        hash_table.storage[index] = None
 
 
 # Fill this in.
