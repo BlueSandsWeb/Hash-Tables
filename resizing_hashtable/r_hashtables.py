@@ -31,6 +31,10 @@ def hash(string, max):
 
 # Hint: Used the LL to handle collisions
 def hash_table_insert(hash_table, key, value):
+    if hash_table.count < int(hash_table.capacity * .2):
+        hash_table_resize(hash_table)
+    elif hash_table.count > int(hash_table.capacity * .7):
+        hash_table_resize(hash_table)
     index = hash(key, hash_table.capacity)
     newPair = LinkedPair(key, value)
     if hash_table.storage[index] is not None:
@@ -45,7 +49,7 @@ def hash_table_insert(hash_table, key, value):
                     node.next = newNode
                     hash_table.count += 1
                     print("newNode: ", newNode.value)
-                    return newNode
+                    return newNode.value
                 else:
                     node = node.next
 
@@ -54,7 +58,7 @@ def hash_table_insert(hash_table, key, value):
         print(hash_table.storage[index].value)
         print("inserted!")
         hash_table.count += 1
-        return hash_table.storage[index]
+        return hash_table.storage[index].value
 
 
 # Fill this in.
@@ -109,7 +113,10 @@ def hash_table_retrieve(hash_table, key):
 # Fill this in
 def hash_table_resize(hash_table):
     # make new array
-    new_hash_table = HashTable(hash_table.capacity * 2)
+    if hash_table.count < hash_table.capacity / 2:
+        new_hash_table = HashTable(hash_table.capacity // 2)
+    else:
+        new_hash_table = HashTable(hash_table.capacity * 2)
     # loop over old array
     while hash_table.count > 0:
         print(f"resize running...")
@@ -121,12 +128,12 @@ def hash_table_resize(hash_table):
                 hash_table_remove(hash_table, key)
                 hash_table_insert(new_hash_table, key, value)
 
-    # hash_table.capacity = new_hash_table.capacity
-    # hash_table.storage = new_hash_table.storage
-    # hash_table.count = new_hash_table.count
+    hash_table.capacity = new_hash_table.capacity
+    hash_table.storage = new_hash_table.storage
+    hash_table.count = new_hash_table.count
     # return hash_table
+    print(f"ht in resize is... {new_hash_table.storage}")
     return new_hash_table
-    print(f"ht in resize is... {hash_table.storage}")
     # pick first item, remove from old array
     # add to new array
     # don't forget to rehash all the keys
@@ -152,6 +159,9 @@ def Testing():
     print(f" ht testing is ... {ht}")
     ht = hash_table_resize(ht)
     print(f" ht testing 2 ... {ht}")
+    new_capacity = len(ht.storage)
+    print(f" ht testing 3 ... {ht}")
+    ht = hash_table_resize(ht)
     new_capacity = len(ht.storage)
 
     print("Resized hash table from " + str(old_capacity)

@@ -13,29 +13,29 @@ class BasicHashTable:
     def __init__(self, capacity):
         self.capacity = capacity
         self.storage = [None] * capacity
-        # [[key = 0, value="string"],None,None,[key = 3, value="string"],None,None,[key = 5, value="string"]]
-
-
 
 # Research and implement the djb2 hash function
+
+
 def hash(string, max):
     hash = 5381
     for x in string:
-        hash = ((hash << 5) + hash)+ ord(x)
+        hash = ((hash << 5) + hash) + ord(x)
     return hash % max
 
 
 # Fill this in.
 # If you are overwriting a value with a different key, print a warning.
 def hash_table_insert(hash_table, key, value):
-    index = hash(key, hash_table.capacity)    
+    index = hash(key, hash_table.capacity)
     if hash_table.storage[index] is not None:
         print("Warning: overwriting a value")
     hash_table.storage[index] = Pair(key, value)
 
-
 # Fill this in.
 # If you try to remove a value that isn't there, print a warning.
+
+
 def hash_table_remove(hash_table, key):
     index = hash(key, hash_table.capacity)
     if hash_table.storage[index] is None:
@@ -60,9 +60,6 @@ def hash_table_retrieve(hash_table, key):
             print('key no longer exists')
     print('no value with key "' + key + '"')
     return None
-
-
-
 
 
 def Testing():
